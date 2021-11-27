@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOA Parking App</title>
+
+    <!--CSS-->
+    <link
+      rel="stylesheet"
+      href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+
+    <!--JS-->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+  <body>
+    <!--User Login Page-->
+    <div data-role="page" id="page-login" data-theme="b">
+      <div data-role="header">
+        <h1>HOA Parking</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">
+        <label for="data-password">Password:</label>
+        <input type="password" id="data-password" />
+
+        <div data-role="controlgroup">
+          <a href="" data-role="button" id="btn-enter-password"> Enter</a>
+          <a href="#page-about" data-role="button">About</a>
+        </div>
+
+        <div data-role="controlgroup" data-type="horizontal">
+          <a data-role="button" onclick="addValueToPassword(7);">7</a>
+          <a data-role="button" onclick="addValueToPassword(8);">8</a>
+          <a data-role="button" onclick="addValueToPassword(9);">9</a>
+        </div>
+
+        <div data-role="controlgroup" data-type="horizontal">
+          <a data-role="button" onclick="addValueToPassword(4);">4</a>
+          <a data-role="button" onclick="addValueToPassword(5);">5</a>
+          <a data-role="button" onclick="addValueToPassword(6);">6</a>
+        </div>
+
+        <div data-role="controlgroup" data-type="horizontal">
+          <a data-role="button" onclick="addValueToPassword(1);">1</a>
+          <a data-role="button" onclick="addValueToPassword(2);">2</a>
+          <a data-role="button" onclick="addValueToPassword(3);">3</a>
+        </div>
+
+        <div data-role="controlgroup" data-type="horizontal">
+          <a data-role="button" onclick="addValueToPassword(0);">0</a>
+          <a
+            data-role="button"
+            onclick="addValueToPassword('bksp');"
+            data-icon="delete"
+            >del</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Disclaimer Page-->
+    <div
+      data-role="page"
+      id="page-disclaimer"
+      data-close-btn="none"
+      data-theme="b"
+    >
+      <div data-role="header">
+        <h1>Disclaimer</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">
+        <p>
+          By acknowledging this disclaimer, you understand that if you do not
+          have a parking pass and park in a guest parking spot then you car is
+          subject to being towed at your own expense.
+        </p>
+
+        <a
+          href="#page-user-info"
+          id="btn-notice-yes"
+          data-role="button"
+          data-icon="forward"
+          data-mini="false"
+          >Yes</a
+        >
+      </div>
+    </div>
+
+    <!--About Page-->
+    <div data-role="page" id="page-about" data-theme="b">
+      <div data-role="header">
+        <h1>About</h1>
+        <a
+          href="../"
+          data-rel="back"
+          data-role="button"
+          data-icon="back"
+          data-iconpos="left"
+          class="ui-btn-right"
+          >Back</a
+        >
+      </div>
+
+      <div data-role="main" class="ui-content">
+        <p>
+          This application has been designed to help with keeping an electronic
+          copy of guest parking for the Reflections at Storey Lake HOA. The
+          information kept is the Make, Model, and License Plate of the guest
+          that needs the parking spot. This application is not affliated with
+          the HOA at this time and is the sole property of Robby Hurst for his
+          senior project. If you have any questions regarding this application,
+          you can reach out to him via e-mail at hurst.robby@gmail.com
+        </p>
+      </div>
+    </div>
+
+    <!--User Information Page/Form-->
+    <div data-role="page" id="page-user-info" data-theme="b">
+      <div data-role="header">
+        <a
+          href="#page-menu"
+          data-role="button"
+          data-icon="bars"
+          data-iconpos="left"
+          data-inline="true"
+          >Menu</a
+        >
+        <a
+          href="../"
+          data-role="button"
+          data-icon="back"
+          data-iconpos="right"
+          data-inline="true"
+          >Logout</a
+        >
+        <h1>User Information</h1>
+      </div>
+
+      <div data-role="main" class="ui-content" data-theme="b">
+        <form id="form-user-info" data-theme="b">
+          <div data-role="fieldcontain" data-theme="b">
+            <label for="data-first-name">First Name: </label>
+            <input
+              autocomplete="off"
+              type="text"
+              placeholder="First Name"
+              data-mini="false"
+              id="data-first-name"
+              value=""
+              required
+              
+            />
+          </div>
+
+          <div data-role="fieldcontain" data-theme="b" >
+            <label for="data-last-name">Last Name: </label>
+            <input
+              type="text"
+              placeholder="Last Name"
+              data-mini="false"
+              id="data-last-name"
+              value=""
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div data-role="fieldcontain">
+            <label for="data-address">Address: </label>
+            <input
+              type="text"
+              autocomplete="off"
+              data-mini="false"
+              placeholder="Address"
+              id="data-address"
+              value=""
+              required
+              
+            />
+          </div>
+
+          <div data-role="fieldcontain">
+            <label for="data-new-password">Edit Password: </label>
+            <input
+              type="password"
+              placeholder="New Password"
+              data-mini="false"
+              id="data-new-password"
+              value=""
+              required
+              autocomplete="off"
+            />
+          </div>
+          <input
+            type="submit"
+            id="btn-user-update"
+            data-icon="check"
+            data-iconpos="left"
+            value="Update"
+            data-inline="true"
+          />
+        </form>
+      </div>
+    </div>
+
+    <!--Menu Page-->
+    <div data-role="page" id="page-menu" data-theme="b">
+      <div data-role="header">
+        <a
+          href="../"
+          data-role="button"
+          data-icon="back"
+          data-iconpos="right"
+          data-inline="true"
+          class="ui-btn-right"
+          >Logout</a
+        >
+
+        <h1>HOA Parking</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">
+        <div data-role="controlgroup">
+          <a href="#page-user-info" data-role="button">User Info</a>
+          <a href="#page-records" data-role="button">Parking Passes</a>
+          <a href="#page-about" data-role="button">About</a>
+        </div>
+      </div>
+    </div>
+
+    <!--Records Page-->
+    <div data-role="page" id="page-records" data-theme="b">
+      <div data-role="header">
+        <a
+          href="#page-menu"
+          data-role="button"
+          data-icon="bars"
+          data-iconpos="left"
+          data-inline="true"
+          >Menu</a
+        >
+        <a
+          href="../"
+          data-role="button"
+          data-icon="back"
+          data-iconpos="right"
+          data-inline="true"
+          >Logout</a
+        >
+        <h1>Parking Pass Records</h1>
+      </div>
+
+      <div data-role="main" class="ui-content" data-theme="b">
+        <!--User's Information Section-->
+        <div data-role="fieldcontain" id="div-user-section"></div>
+
+        <h2>Parking Passes</h2>
+        <h2 id="recordcount">35</h2>
+        <h2>Spots Remaining</h2>
+        <div data-role="fieldcontain">
+          <!--Records Table-->
+          <table
+            id="tbl-records"
+            class="ui-responsive table-stripe"
+            data-mode="reflow"
+          ></table>
+        </div>
+
+        <div data-role="fieldcontain">
+          <a
+            href="#page-record-form"
+            id="btn-add-record"
+            data-role="button"
+            data-icon="plus"
+            >Add New Parking Pass</a
+          >
+          <a
+            href="#"
+            data-role="button"
+            id="btn-clear-history"
+            data-icon="delete"
+            >Clear All Parking Passes</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Record Form Page-->
+    <div data-role="page" id="page-record-form" data-theme="b">
+      <div data-role="header" data-theme="b">
+        <a
+          href="#page-menu"
+          data-role="button"
+          data-icon="bars"
+          data-iconpos="left"
+          data-inline="true"
+          >Menu</a
+        >
+        <a
+          href="../"
+          data-role="button"
+          data-icon="back"
+          data-iconpos="right"
+          data-inline="true"
+          >Logout</a
+        >
+        <h1>Parking Pass Form</h1>
+      </div>
+
+      <div data-role="main" class="ui-content" data-theme="b">
+        <form id="form-record" data-theme="b">
+          <div data-role="fieldcontain">
+            <div data-role="fieldcontain">
+              <label for="data-parking-pass-date">Date: </label>
+              <input
+                type="date"
+                data-mini="false"
+                id="data-parking-pass-date"
+                value=""
+              />
+            </div>
+            <div data-role="fieldcontain" data-theme="b">
+              <label for="data-member-name">Name: </label>
+              <input
+                type="text"
+                placeholder=""
+                data-mini="false"
+                id="data-member-name"
+                value=""
+                autocomplete="off"
+              />
+            </div>
+
+            <div data-role="fieldcontain" data-theme="b">
+              <label for="data-member-address">Address: </label>
+              <input
+                type="text"
+                placeholder=""
+                data-mini="false"
+                id="data-member-address"
+                value=""
+                autocomplete="off"
+              />
+            </div>
+
+            <div data-role="fieldcontain" data-theme="b">
+              <label for="data-make">Make: </label>
+              <input
+                type="text"
+                placeholder=""
+                data-mini="false"
+                id="data-make"
+                value=""
+                autocomplete="off"
+              />
+            </div>
+
+            <div data-role="fieldcontain" data-theme="b">
+              <label for="data-model">Model:</label>
+              <input
+                type="text"
+                placeholder=""
+                data-mini="false"
+                id="data-model"
+                value=""
+                autocomplete="off"
+              />
+            </div>
+
+            <div data-role="fieldcontain" data-theme="b">
+              <label for="data-license-plate">License Plate:</label>
+              <input
+                type="text"
+                placeholder=""
+                data-mini="false"
+                id="data-license-plate"
+                value=""
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <input type="submit" id="btn-submit-record" value="" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts/login.js"></script>
+    <script src="scripts/page-loader.js"></script>
+    <script src="scripts/records.js"></script>
+    <script src="scripts/user-form.js"></script>
+    <script src="scripts/firebase.js"></script>
+  </body>
+</html>
