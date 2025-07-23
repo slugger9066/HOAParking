@@ -141,12 +141,13 @@ function addRecord() {
         alert("Saving Information");
         clearRecordForm();
         listRecords();
-      } else
+        return true;
+      } else {
         alert(
           "Guest Parking Spots are full for today. We apologize for the inconvenience."
         );
-
-      return true;
+        return false;
+      }
     } catch (e) {
       if (window.navigator.vendor === "Google Inc.") {
         if (e === DOMException.QUOTA_EXCEEDED_ERR) {
@@ -410,4 +411,21 @@ function recordCount() {
   document.getElementById("recordcount").innerHTML = remainingSpots;
 
   return remainingSpots;
+}
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    addRecord,
+    recordCount,
+    clearRecordForm,
+    listRecords,
+    checkRecordForm,
+    compareDates,
+    deleteRecord,
+    editRecord,
+    callEdit,
+    callDelete,
+    loadUserInformation,
+    showRecordForm,
+  };
 }
