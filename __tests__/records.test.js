@@ -1,7 +1,6 @@
-const {
-  addRecord,
-  recordCount,
-} = require('../public/scripts/records');
+require('jest-localstorage-mock');
+
+const { addRecord, recordCount } = require('../public/scripts/records');
 
 beforeEach(() => {
   // simple DOM setup

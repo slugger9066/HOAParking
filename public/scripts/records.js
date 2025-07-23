@@ -417,15 +417,5 @@ if (typeof module !== "undefined") {
   module.exports = {
     addRecord,
     recordCount,
-    clearRecordForm,
-    listRecords,
-    checkRecordForm,
-    compareDates,
-    deleteRecord,
-    editRecord,
-    callEdit,
-    callDelete,
-    loadUserInformation,
-    showRecordForm,
   };
 }
